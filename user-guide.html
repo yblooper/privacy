@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YBLooper User Guide</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #5c6876;
+      --line: #d9e0ea;
+      --accent: #18c8d8;
+      --accent-strong: #0f7681;
+      --danger: #e9514e;
+      --good: #4fd66d;
+      --shadow: 0 18px 42px rgba(11, 20, 32, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101418;
+        --panel: #171d24;
+        --text: #eef3f7;
+        --muted: #b7c2ce;
+        --line: #2e3845;
+        --accent: #69e7ef;
+        --accent-strong: #8af4fa;
+        --shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0f171b;
+      color: #f5f7f2;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0 34px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: #d7dfde;
+      font-size: 18px;
+      margin: 10px 0 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 21px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    a {
+      color: var(--accent-strong);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 52px;
+    }
+
+    section {
+      margin: 24px 0;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .screenshot {
+      margin: 0;
+    }
+
+    .screenshot img {
+      display: block;
+      width: min(100%, 390px);
+      max-height: 780px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #0b1114;
+    }
+
+    .screenshot figcaption {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .toc a {
+      color: #efffff;
+      text-decoration: none;
+      border: 1px solid rgba(105, 231, 239, 0.45);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 14px;
+      background: rgba(105, 231, 239, 0.12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button-name {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 9px;
+      margin: 2px;
+      font-size: 13px;
+      color: var(--text);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding: 14px 14px 14px 52px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background: color-mix(in srgb, var(--accent) 5%, transparent);
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #071114;
+      background: var(--accent);
+      font-weight: 700;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: 0 8px 8px 0;
+      color: var(--text);
+    }
+
+    .warning {
+      border-left-color: var(--danger);
+      background: color-mix(in srgb, var(--danger) 8%, transparent);
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 16px 42px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 620px) {
+      section {
+        padding: 18px;
+      }
+
+      th,
+      td {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+      }
+
+      th {
+        border-bottom: 0;
+        padding-top: 14px;
+      }
+
+      tr {
+        display: block;
+        border-bottom: 1px solid var(--line);
+        padding: 8px 0;
+      }
+
+      td {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1>YBLooper User Guide</h1>
+      <p>
+        A quick, practical guide for recording loops, saving practice setups,
+        using the tuner, and understanding the main buttons in YBLooper.
+      </p>
+      <nav class="toc" aria-label="Guide sections">
+        <a href="#quick-record-save">Quick Record And Save</a>
+        <a href="#main-screen">Main Screen</a>
+        <a href="#button-legend">Button Legend</a>
+        <a href="#storage">Storage</a>
+        <a href="#tuner">Tuner</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="quick-record-save">
+      <h2>Quick Guide: Record, Save, And Load A Loop</h2>
+      <div class="grid">
+        <div>
+          <p>
+            Use this flow when you want to capture a practice loop and keep it
+            available for the next session.
+          </p>
+          <ol class="steps">
+            <li>
+              Connect your guitar or audio source, then set <strong>Mic Gain</strong>
+              so the input is loud enough without clipping.
+            </li>
+            <li>
+              Optional: set the <strong>Metronome BPM</strong> and enable count-in
+              from Settings if you want a silent count before recording starts.
+            </li>
+            <li>
+              Tap <strong>REC</strong> to start recording. Play the riff, chord
+              progression, or practice phrase you want to loop.
+            </li>
+            <li>
+              Tap <strong>REC</strong> again to finish the recording and create
+              the loop.
+            </li>
+            <li>
+              Tap <strong>Save</strong> to store the current loop and practice
+              setup in the selected slot.
+            </li>
+            <li>
+              Tap <strong>Storage</strong> to review saved loop slots. Use
+              <strong>Load</strong> to bring a saved loop back into the main
+              screen.
+            </li>
+          </ol>
+          <p class="note">
+            Tip: Use <strong>Slot1</strong> to choose the active preset slot before
+            saving. This helps keep different practice setups organized.
+          </p>
+        </div>
+        <figure class="screenshot">
+          <img src="01-dashboard.png" alt="YBLooper main screen with REC and DEL pedals, effects chain, metronome and save controls.">
+          <figcaption>Main screen used for recording and saving loops.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="main-screen">
+      <h2>Main Screen Overview</h2>
+      <div class="grid">
+        <div>
+          <h3>Top Navigation</h3>
+          <p>
+            The top row gives fast access to the main areas of the app:
+            tuner, storage, saving, preset slot selection, and settings.
+          </p>
+          <h3>Practice Controls</h3>
+          <p>
+            The center area contains input gain, metronome BPM, the effects
+            chain, and the currently selected effect controls.
+          </p>
+          <h3>Pedals</h3>
+          <p>
+            The large lower pedals are designed for quick use during practice:
+            record a loop with <strong>REC</strong> and delete the current loop
+            with <strong>DEL</strong>.
+          </p>
+        </div>
+        <figure class="screenshot">
+          <img src="01-dashboard.png" alt="YBLooper main screen showing the top navigation, effects chain, knobs, REC pedal and DEL pedal.">
+          <figcaption>Main screen layout.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="button-legend">
+      <h2>Button Legend</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Button / Control</th>
+            <th>Where It Is</th>
+            <th>What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="button-name">REC</td>
+            <td>Main screen bottom pedal</td>
+            <td>Starts recording a loop. Tap again to finish the recording.</td>
+          </tr>
+          <tr>
+            <td class="button-name">DEL</td>
+            <td>Main screen bottom pedal</td>
+            <td>Deletes the current loop from the active working area.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Tuner</td>
+            <td>Top navigation</td>
+            <td>Opens the guitar tuner screen.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Storage</td>
+            <td>Top navigation</td>
+            <td>Opens the saved loop slots and file controls.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Save</td>
+            <td>Top navigation</td>
+            <td>Saves the current loop and practice setup to the selected slot.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Slot1 / Slot Selector</td>
+            <td>Top navigation</td>
+            <td>Selects the active loop or preset slot used for saving and loading.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Gear</td>
+            <td>Top navigation</td>
+            <td>Opens Settings.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Mic Gain</td>
+            <td>Main screen upper panel</td>
+            <td>Adjusts the input level used by audio features.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Metronome BPM</td>
+            <td>Main screen upper panel</td>
+            <td>Sets the practice tempo. Use the minus and plus controls to adjust it.</td>
+          </tr>
+          <tr>
+            <td class="button-name">FX Pedals</td>
+            <td>FX chain panel</td>
+            <td>Select an effect such as Distortion, Chorus, Stereo, Delay, or Reverb for editing.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Bypassed</td>
+            <td>Effect editor</td>
+            <td>Turns the selected effect on or bypasses it.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Reset</td>
+            <td>Effect editor</td>
+            <td>Returns the selected effect to its default values.</td>
+          </tr>
+          <tr>
+            <td class="button-name">Effect Knobs</td>
+            <td>Effect editor</td>
+            <td>Adjust parameters for the selected effect, such as gain, tone, level, mix, or time.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Common effect labels:
+        <span class="pill">Dist.</span>
+        <span class="pill">Chorus</span>
+        <span class="pill">Stereo</span>
+        <span class="pill">Delay</span>
+        <span class="pill">Reverb</span>
+      </p>
+    </section>
+
+    <section id="storage">
+      <h2>Storage And Loop Slots</h2>
+      <div class="grid">
+        <div>
+          <p>
+            The Storage screen shows available loop slots. Each slot can hold a
+            loop file and displays its status, length, size, and file path when
+            available.
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td class="button-name">Load</td>
+                <td>Loads the selected loop slot into the main screen.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Share</td>
+                <td>Shares the loop file when a shareable saved loop exists.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Trash</td>
+                <td>Deletes the saved loop from that slot.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Selected</td>
+                <td>Shows which loop slot is currently active.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="warning">
+            Use Trash carefully. A deleted loop may not be recoverable.
+          </p>
+        </div>
+        <figure class="screenshot">
+          <img src="04-storage.png" alt="YBLooper Storage and Files screen showing Loop Slot 1, Loop Slot 2, Load, Share and Trash buttons.">
+          <figcaption>Storage screen with loop slots.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="tuner">
+      <h2>Guitar Tuner</h2>
+      <div class="grid">
+        <div>
+          <p>
+            The tuner listens through the microphone and shows whether the
+            detected note is flat, sharp, or in tune.
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td class="button-name">E2 A2 D3 G3 B3 E4</td>
+                <td>Standard guitar string targets.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Auto / Manual Tune</td>
+                <td>Switches between automatic note detection and manual string selection.</td>
+              </tr>
+              <tr>
+                <td class="button-name">UP / DOWN</td>
+                <td>Changes tuning mode or target selection when available.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Sensitivity Knob</td>
+                <td>Adjusts tuner response sensitivity.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="note">
+            For best results, tune in a quiet room and let one string ring at a
+            time.
+          </p>
+        </div>
+        <figure class="screenshot">
+          <img src="02-tuner.png" alt="YBLooper Guitar Tuner screen with tuning needle, standard guitar strings and auto/manual tune switch.">
+          <figcaption>Guitar tuner screen.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="settings">
+      <h2>Settings</h2>
+      <div class="grid">
+        <div>
+          <p>
+            Settings contains app information, appearance options, CPU meter
+            visibility, recording count-in, metronome volume, and loop trim
+            controls.
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td class="button-name">Skin</td>
+                <td>Changes the visual theme of the app.</td>
+              </tr>
+              <tr>
+                <td class="button-name">CPU Meter</td>
+                <td>Shows or hides CPU usage information.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Reset All FX</td>
+                <td>Returns all effects to their default values.</td>
+              </tr>
+              <tr>
+                <td class="button-name">BPM 110</td>
+                <td>Resets or sets the metronome BPM to the default value.</td>
+              </tr>
+              <tr>
+                <td class="button-name">REC Count-in</td>
+                <td>Enables or disables a count-in before recording starts.</td>
+              </tr>
+              <tr>
+                <td class="button-name">Metronome Volume</td>
+                <td>Adjusts metronome loudness.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="screenshot">
+          <img src="03-settings.png" alt="YBLooper Settings screen showing version, support email, skin selection, CPU meter and recording count-in.">
+          <figcaption>Settings screen.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2>Support</h2>
+      <p>
+        For help, questions, or feedback, contact:
+        <a href="mailto:YBLooper10@gmail.com">YBLooper10@gmail.com</a>
+      </p>
+      <p>
+        App version shown in this guide: <strong>YBLooper v2.0</strong>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Created by YaroniX - Brouk Studios 2026
+  </footer>
+</body>
+</html>
