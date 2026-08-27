@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<title>Guitar Modes & Chords Cheat Sheet</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    margin: 30px; 
+    line-height: 1.6; 
+    background-color: #fcfcfc;
+    color: #333;
+  }
+  
+  /* Top Controls Container */
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eef2f5;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .lang-control, .sound-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .control-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  .btn {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover { background-color: #34495e; }
+  .btn.active { background-color: #27ae60; }
+
+  /* Audio Play Buttons inside table */
+  .play-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    margin-right: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    vertical-align: middle;
+  }
+  .play-btn:hover { background-color: #2980b9; }
+
+  /* Distinct style for Combined Mode+Accompaniment button */
+  .play-btn.mode-combo-btn {
+    background-color: #8e44ad;
+  }
+  .play-btn.mode-combo-btn:hover {
+    background-color: #7d3c98;
+  }
+
+  /* Content Containers */
+  .content-page { display: none; }
+  .content-page.active { display: block; }
+
+  /* Typography & Layout */
+  h1, h2, h3 { color: #2c3e50; }
+  .rtl-content { direction: rtl; text-align: right; }
+  .ltr-content { direction: ltr; text-align: left; }
+
+  /* Table Styles (Always LTR) */
+  table.ltr-table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    margin: 20px 0; 
+    direction: ltr !important; 
+    text-align: left !important;
+    background-color: #ffffff;
+  }
+  
+  table.ltr-table th, 
+  table.ltr-table td { 
+    border: 1px solid #dddddd; 
+    padding: 10px; 
+    text-align: left !important;
+    direction: ltr !important;
+  }
+  
+  table.ltr-table th { 
+    background-color: #f2f2f2; 
+    color: #2c3e50;
+  }
+
+  code {
+    background-color: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: Consolas, monospace;
+  }
+  
+  ul, ol { line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<!-- Top Controls (Language & Instrument Selector) -->
+<div class="top-controls">
+  <div class="lang-control">
+    <span class="control-label">Language / שפה:</span>
+    <button class="btn active" id="btn-he" onclick="switchLanguage('he')">עברית</button>
+    <button class="btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+  </div>
+  
+  <div class="sound-control">
+    <span class="control-label">Instrument / כלי נגינה:</span>
+    <button class="btn active" id="inst-piano" onclick="setInstrument('piano')">🎹 Piano</button>
+    <button class="btn" id="inst-guitar" onclick="setInstrument('guitar')">🎸 Guitar</button>
+  </div>
+</div>
+
+<!-- HEBREW PAGE -->
+<div id="page-he" class="content-page active rtl-content">
+  <h1>Guitar Modes & Chords Cheat Sheet</h1>
+  <p><strong>מדריך מעשי לשינון, הבנה וחיבור בין מודוסים, דרגות ואקורדים.</strong></p>
+
+  <h2>1. טבלת מודוסים, מרווחים ואקורדים מתאימים</h2>
+  <table class="ltr-table">
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>Scale Formula (Intervals)</th>
+        <th>Characteristic Interval</th>
+        <th>Triad</th>
+        <th>7th Chord</th>
+        <th>Example Progression</th>
+        <th>Key Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([60,62,64,65,67,69,71,72], [[60,64,67],[65,69,72],[67,71,74]])">▶ Play Both</button> 
+          <b>Ionian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([60,62,64,65,67,69,71,72])">▶ Play</button> 1 - 2 - 3 - 4 - 5 - 6 - 7</td>
+        <td>Natural 4, Major 7</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([60,64,67,71])">▶ Play</button> Maj7</td>
+        <td>I - IV - V</td>
+        <td><button class="play-btn" onclick="playProgression([[60,64,67],[65,69,72],[67,71,74]])">▶ Play</button> C - F - G</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([62,64,65,67,69,71,72,74], [[62,65,69,72],[67,71,74,77],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Dorian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([62,64,65,67,69,71,72,74])">▶ Play</button> 1 - 2 - b3 - 4 - 5 - 6 - b7</td>
+        <td>Major 6 (Raised 6th)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([62,65,69,72])">▶ Play</button> m7</td>
+        <td>i - IV - bVII</td>
+        <td><button class="play-btn" onclick="playProgression([[62,65,69,72],[67,71,74,77],[60,64,67,71]])">▶ Play</button> Dm7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([64,65,67,69,71,72,74,76], [[64,67,71,74],[65,69,72,76],[67,71,74,77]])">▶ Play Both</button> 
+          <b>Phrygian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([64,65,67,69,71,72,74,76])">▶ Play</button> 1 - b2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 2 (Flat 2nd)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([64,67,71,74])">▶ Play</button> m7</td>
+        <td>i - bII - bIII</td>
+        <td><button class="play-btn" onclick="playProgression([[64,67,71,74],[65,69,72,76],[67,71,74,77]])">▶ Play</button> Em7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([65,67,69,71,72,74,76,77], [[65,69,72,76],[67,71,74,77],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Lydian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([65,67,69,71,72,74,76,77])">▶ Play</button> 1 - 2 - 3 - #4 - 5 - 6 - 7</td>
+        <td>Augmented 4 (#4)</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([65,69,72,76])">▶ Play</button> Maj7</td>
+        <td>I - II - V</td>
+        <td><button class="play-btn" onclick="playProgression([[65,69,72,76],[67,71,74,77],[60,64,67,71]])">▶ Play</button> Fmaj7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([67,69,71,72,74,76,77,79], [[67,71,74,77],[65,69,72,76],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Mixolydian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([67,69,71,72,74,76,77,79])">▶ Play</button> 1 - 2 - 3 - 4 - 5 - 6 - b7</td>
+        <td>Minor 7 (Flat 7th)</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([67,71,74,77])">▶ Play</button> Dominant 7</td>
+        <td>I - bVII - IV</td>
+        <td><button class="play-btn" onclick="playProgression([[67,71,74,77],[65,69,72,76],[60,64,67,71]])">▶ Play</button> G7 - Fmaj7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([69,71,72,74,76,77,79,81], [[69,72,76,79],[65,69,72,76],[67,71,74,77]])">▶ Play Both</button> 
+          <b>Aeolian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([69,71,72,74,76,77,79,81])">▶ Play</button> 1 - 2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 6 (Natural Minor)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([69,72,76,79])">▶ Play</button> m7</td>
+        <td>i - bVI - bVII</td>
+        <td><button class="play-btn" onclick="playProgression([[69,72,76,79],[65,69,72,76],[67,71,74,77]])">▶ Play</button> Am7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([71,72,74,76,77,79,81,83], [[71,74,77,81],[60,64,67,71],[62,65,69,72]])">▶ Play Both</button> 
+          <b>Locrian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([71,72,74,76,77,79,81,83])">▶ Play</button> 1 - b2 - b3 - 4 - b5 - b6 - b7</td>
+        <td>Diminished 5 (b5)</td>
+        <td>Diminished</td>
+        <td><button class="play-btn" onclick="playChord([71,74,77,81])">▶ Play</button> m7b5</td>
+        <td>i° - bII - biii</td>
+        <td><button class="play-btn" onclick="playProgression([[71,74,77,81],[60,64,67,71],[62,65,69,72]])">▶ Play</button> Bm7b5 - Cmaj7 - Dm7</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. מקרא והגיון לבניית אקורדים</h2>
+  <p>כל אקורד נבנה מדרגת הבסיס (<b>1</b>), הטרצה (<b>3</b>), החמישית (<b>5</b>), והשביעית (<b>7</b>).</p>
+  <ul>
+    <li><b>דרגה 3</b> קובעת את ה"משפחה": מאז'ור (3) או מינור (b3).</li>
+    <li><b>דרגות 5 ו-7</b> קובעות את ה"גיוון" והמתח של האקורד.</li>
+  </ul>
+
+  <h3>סוגי האקורדים המרכזיים:</h3>
+  <ul>
+    <li><b>Major (Maj / Maj7):</b> <code>1 - 3 - 5 - 7</code><br>צליל זך, יציב ומתוק. ללא הנמכות.</li>
+    <li><b>Minor (m / m7):</b> <code>1 - b3 - 5 - b7</code><br>צליל מינורי/עצוב. הטרצה והשביעית מונמכות בחצי טון.</li>
+    <li><b>Dominant 7 (7):</b> <code>1 - 3 - 5 - b7</code><br>בסיס מאז'ורי (3) עם שביעית מונמכת (b7). יוצר מתח שדורש פתרון (האקורד המרכזי ב-Mixolydian).</li>
+    <li><b>Half-Diminished (m7b5):</b> <code>1 - b3 - b5 - b7</code><br>אקורד m7 רגיל שבו רק הדרגה החמישית מונמכת (b5). נקרא חצי-מוקטן (האקורד המרכזי ב-Locrian).</li>
+    <li><b>Diminished (dim / °):</b> <code>1 - b3 - b5</code><br>אקורד מוקטן מלא (שלשה מינורית עם חמישית מונמכת).</li>
+  </ul>
+
+  <h2>3. טריקים לזיכרון ושינון מהיר</h2>
+  <ul>
+    <li><b>זיהוי מאז'ור vs מינור:</b> מופיעה 3 רגילה? ← אקורד מאז'ורי. מופיעה b3? ← אקורד מינורי או מוקטן.</li>
+    <li><b>זיהוי אקורד מוקטן:</b> דרגה 5 מופיעה בכל האקורדים הסטנדרטיים. דרגה b5 מופיעה <b>רק</b> באקורדים מוקטנים (Locrian / Diminished).</li>
+    <li><b>סולם ההנמכות של אקורדי 7 (מהפתוח למכווץ):</b>
+      <ol>
+        <li><b>Maj7:</b> 1 - 3 - 5 - 7</li>
+        <li><b>Dominant 7:</b> 1 - 3 - 5 - b7</li>
+        <li><b>m7:</b> 1 - b3 - 5 - b7</li>
+        <li><b>m7b5:</b> 1 - b3 - b5 - b7</li>
+      </ol>
+    </li>
+  </ul>
+</div>
+
+<!-- ENGLISH PAGE -->
+<div id="page-en" class="content-page ltr-content">
+  <h1>Guitar Modes & Chords Cheat Sheet</h1>
+  <p><strong>A practical guide for memorizing, understanding, and connecting modes, scale degrees, and chords.</strong></p>
+
+  <h2>1. Modes, Intervals & Corresponding Chords Table</h2>
+  <table class="ltr-table">
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>Scale Formula (Intervals)</th>
+        <th>Characteristic Interval</th>
+        <th>Triad</th>
+        <th>7th Chord</th>
+        <th>Example Progression</th>
+        <th>Key Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([60,62,64,65,67,69,71,72], [[60,64,67],[65,69,72],[67,71,74]])">▶ Play Both</button> 
+          <b>Ionian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([60,62,64,65,67,69,71,72])">▶ Play</button> 1 - 2 - 3 - 4 - 5 - 6 - 7</td>
+        <td>Natural 4, Major 7</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([60,64,67,71])">▶ Play</button> Maj7</td>
+        <td>I - IV - V</td>
+        <td><button class="play-btn" onclick="playProgression([[60,64,67],[65,69,72],[67,71,74]])">▶ Play</button> C - F - G</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([62,64,65,67,69,71,72,74], [[62,65,69,72],[67,71,74,77],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Dorian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([62,64,65,67,69,71,72,74])">▶ Play</button> 1 - 2 - b3 - 4 - 5 - 6 - b7</td>
+        <td>Major 6 (Raised 6th)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([62,65,69,72])">▶ Play</button> m7</td>
+        <td>i - IV - bVII</td>
+        <td><button class="play-btn" onclick="playProgression([[62,65,69,72],[67,71,74,77],[60,64,67,71]])">▶ Play</button> Dm7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([64,65,67,69,71,72,74,76], [[64,67,71,74],[65,69,72,76],[67,71,74,77]])">▶ Play Both</button> 
+          <b>Phrygian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([64,65,67,69,71,72,74,76])">▶ Play</button> 1 - b2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 2 (Flat 2nd)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([64,67,71,74])">▶ Play</button> m7</td>
+        <td>i - bII - bIII</td>
+        <td><button class="play-btn" onclick="playProgression([[64,67,71,74],[65,69,72,76],[67,71,74,77]])">▶ Play</button> Em7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([65,67,69,71,72,74,76,77], [[65,69,72,76],[67,71,74,77],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Lydian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([65,67,69,71,72,74,76,77])">▶ Play</button> 1 - 2 - 3 - #4 - 5 - 6 - 7</td>
+        <td>Augmented 4 (#4)</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([65,69,72,76])">▶ Play</button> Maj7</td>
+        <td>I - II - V</td>
+        <td><button class="play-btn" onclick="playProgression([[65,69,72,76],[67,71,74,77],[60,64,67,71]])">▶ Play</button> Fmaj7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([67,69,71,72,74,76,77,79], [[67,71,74,77],[65,69,72,76],[60,64,67,71]])">▶ Play Both</button> 
+          <b>Mixolydian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([67,69,71,72,74,76,77,79])">▶ Play</button> 1 - 2 - 3 - 4 - 5 - 6 - b7</td>
+        <td>Minor 7 (Flat 7th)</td>
+        <td>Major</td>
+        <td><button class="play-btn" onclick="playChord([67,71,74,77])">▶ Play</button> Dominant 7</td>
+        <td>I - bVII - IV</td>
+        <td><button class="play-btn" onclick="playProgression([[67,71,74,77],[65,69,72,76],[60,64,67,71]])">▶ Play</button> G7 - Fmaj7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([69,71,72,74,76,77,79,81], [[69,72,76,79],[65,69,72,76],[67,71,74,77]])">▶ Play Both</button> 
+          <b>Aeolian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([69,71,72,74,76,77,79,81])">▶ Play</button> 1 - 2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 6 (Natural Minor)</td>
+        <td>Minor</td>
+        <td><button class="play-btn" onclick="playChord([69,72,76,79])">▶ Play</button> m7</td>
+        <td>i - bVI - bVII</td>
+        <td><button class="play-btn" onclick="playProgression([[69,72,76,79],[65,69,72,76],[67,71,74,77]])">▶ Play</button> Am7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td>
+          <button class="play-btn mode-combo-btn" onclick="playScaleWithProgression([71,72,74,76,77,79,81,83], [[71,74,77,81],[60,64,67,71],[62,65,69,72]])">▶ Play Both</button> 
+          <b>Locrian</b>
+        </td>
+        <td><button class="play-btn" onclick="playNotes([71,72,74,76,77,79,81,83])">▶ Play</button> 1 - b2 - b3 - 4 - b5 - b6 - b7</td>
+        <td>Diminished 5 (b5)</td>
+        <td>Diminished</td>
+        <td><button class="play-btn" onclick="playChord([71,74,77,81])">▶ Play</button> m7b5</td>
+        <td>i° - bII - biii</td>
+        <td><button class="play-btn" onclick="playProgression([[71,74,77,81],[60,64,67,71],[62,65,69,72]])">▶ Play</button> Bm7b5 - Cmaj7 - Dm7</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Chord Construction Logic & Legend</h2>
+  <p>Every chord is built from the Root (<b>1</b>), Third (<b>3</b>), Fifth (<b>5</b>), and Seventh (<b>7</b>).</p>
+  <ul>
+    <li><b>The 3rd degree</b> determines the chord "family": Major (3) or Minor (b3).</li>
+    <li><b>The 5th and 7th degrees</b> determine the tension and color of the chord.</li>
+  </ul>
+
+  <h3>Main Chord Types:</h3>
+  <ul>
+    <li><b>Major (Maj / Maj7):</b> <code>1 - 3 - 5 - 7</code><br>Pure, stable, and sweet sound. No flattened notes.</li>
+    <li><b>Minor (m / m7):</b> <code>1 - b3 - 5 - b7</code><br>Minor/sad sound. Both 3rd and 7th degrees are flattened by a half step.</li>
+    <li><b>Dominant 7 (7):</b> <code>1 - 3 - 5 - b7</code><br>Major base (3) with a flattened 7th (b7). Creates tension that seeks resolution (the main chord in Mixolydian).</li>
+    <li><b>Half-Diminished (m7b5):</b> <code>1 - b3 - b5 - b7</code><br>A regular m7 chord where only the 5th degree is flattened (b5). Essential for Locrian.</li>
+    <li><b>Diminished (dim / °):</b> <code>1 - b3 - b5</code><br>Full diminished triad (minor triad with a flattened 5th).</li>
+  </ul>
+
+  <h2>3. Quick Memorization Tips & Tricks</h2>
+  <ul>
+    <li><b>Major vs. Minor Identification:</b> Contains a natural 3? → <b>Major chord</b>. Contains b3? → <b>Minor or Diminished chord</b>.</li>
+    <li><b>Diminished Chord Identification:</b> A natural 5th appears in all standard chords. A <b>b5</b> appears <b>only</b> in diminished chords (Locrian / Diminished).</li>
+    <li><b>7th Chord Flattening Scale (From Open to Compressed):</b>
+      <ol>
+        <li><b>Maj7:</b> 1 - 3 - 5 - 7</li>
+        <li><b>Dominant 7:</b> 1 - 3 - 5 - b7</li>
+        <li><b>m7:</b> 1 - b3 - 5 - b7</li>
+        <li><b>m7b5:</b> 1 - b3 - b5 - b7</li>
+      </ol>
+    </li>
+  </ul>
+</div>
+
+<script>
+  // Global Audio State
+  let audioCtx = null;
+  let currentInstrument = 'piano';
+
+  function initAudio() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  }
+
+  function midiToFreq(midi) {
+    return 440 * Math.pow(2, (midi - 69) / 12);
+  }
+
+  function setInstrument(inst) {
+    currentInstrument = inst;
+    document.getElementById('inst-piano').classList.toggle('active', inst === 'piano');
+    document.getElementById('inst-guitar').classList.toggle('active', inst === 'guitar');
+  }
+
+  function switchLanguage(lang) {
+    document.querySelectorAll('.content-page').forEach(page => page.classList.remove('active'));
+    document.querySelectorAll('.lang-control .btn').forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById('page-' + lang).classList.add('active');
+    document.getElementById('btn-' + lang).classList.add('active');
+    
+    document.documentElement.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+  }
+
+  // Synthesize Note Sound (Web Audio API)
+  function playSingleNote(midiNumber, startTime, duration) {
+    initAudio();
+    const freq = midiToFreq(midiNumber);
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    const now = startTime;
+
+    if (currentInstrument === 'piano') {
+      osc.type = 'triangle';
+      gainNode.gain.setValueAtTime(0.3, now);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    } else { // Guitar Simulation
+      osc.type = 'sawtooth';
+      gainNode.gain.setValueAtTime(0.25, now);
+      gainNode.gain.linearRampToValueAtTime(0.1, now + 0.1);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    }
+
+    osc.frequency.setValueAtTime(freq, now);
+    osc.start(now);
+    osc.stop(now + duration);
+  }
+
+  // Play Scale (Sequential)
+  function playNotes(midiArray) {
+    initAudio();
+    const now = audioCtx.currentTime;
+    const noteDuration = 0.4;
+    midiArray.forEach((midi, index) => {
+      playSingleNote(midi, now + (index * noteDuration), 0.6);
+    });
+  }
+
+  // Play Single Chord (Simultaneous)
+  function playChordAtTime(midiArray, startTime, duration = 1.2) {
+    midiArray.forEach((midi) => {
+      playSingleNote(midi, startTime, duration);
+    });
+  }
+
+  function playChord(midiArray) {
+    initAudio();
+    playChordAtTime(midiArray, audioCtx.currentTime, 1.2);
+  }
+
+  // Play Chord Progression (Sequence of Chords)
+  function playProgression(progressionArray) {
+    initAudio();
+    const now = audioCtx.currentTime;
+    const chordDuration = 1.0;
+    progressionArray.forEach((chord, index) => {
+      playChordAtTime(chord, now + (index * chordDuration), 1.2);
+    });
+  }
+
+  // Play Scale and Chord Progression Simultaneously
+  function playScaleWithProgression(scaleArray, progressionArray) {
+    initAudio();
+    const now = audioCtx.currentTime;
+
+    // 1. Play Scale Notes sequentially (0.4s per note)
+    const noteDuration = 0.4;
+    scaleArray.forEach((midi, index) => {
+      playSingleNote(midi, now + (index * noteDuration), 0.5);
+    });
+
+    // 2. Play Backing Chords loop/stretched across the scale duration
+    const totalScaleTime = scaleArray.length * noteDuration; // ~3.2 seconds
+    const chordDuration = totalScaleTime / progressionArray.length;
+
+    progressionArray.forEach((chord, index) => {
+      playChordAtTime(chord, now + (index * chordDuration), chordDuration + 0.3);
+    });
+  }
+</script>
+
+</body>
+</html>
