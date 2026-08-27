@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<title>Guitar Modes & Chords Cheat Sheet</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    margin: 30px; 
+    line-height: 1.6; 
+    background-color: #fcfcfc;
+    color: #333;
+  }
+  
+  /* Language Switcher Control */
+  .lang-control {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 10px;
+    background-color: #eef2f5;
+    border-radius: 8px;
+  }
+  
+  .lang-btn {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .lang-btn:hover {
+    background-color: #34495e;
+  }
+  
+  .lang-btn.active {
+    background-color: #27ae60;
+  }
+
+  /* Content Containers */
+  .content-page {
+    display: none;
+  }
+  
+  .content-page.active {
+    display: block;
+  }
+
+  /* Typography & Layout */
+  h1, h2, h3 { color: #2c3e50; }
+  
+  /* RTL Section Styles */
+  .rtl-content {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* LTR Section Styles */
+  .ltr-content {
+    direction: ltr;
+    text-align: left;
+  }
+
+  /* Shared Table Styles (Always LTR) */
+  table.ltr-table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    margin: 20px 0; 
+    direction: ltr !important; 
+    text-align: left !important;
+    background-color: #ffffff;
+  }
+  
+  table.ltr-table th, 
+  table.ltr-table td { 
+    border: 1px solid #dddddd; 
+    padding: 10px; 
+    text-align: left !important;
+    direction: ltr !important;
+  }
+  
+  table.ltr-table th { 
+    background-color: #f2f2f2; 
+    color: #2c3e50;
+  }
+
+  code {
+    background-color: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: Consolas, monospace;
+  }
+  
+  ul, ol { line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<!-- Language Switcher Buttons -->
+<div class="lang-control">
+  <button class="lang-btn active" id="btn-he" onclick="switchLanguage('he')">עברית</button>
+  <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">English</button>
+</div>
+
+<!-- HEBREW PAGE -->
+<div id="page-he" class="content-page active rtl-content">
+  <h1>Guitar Modes & Chords Cheat Sheet</h1>
+  <p><strong>מדריך מעשי לשינון, הבנה וחיבור בין מודוסים, דרגות ואקורדים.</strong></p>
+
+  <h2>1. טבלת מודוסים, מרווחים ואקורדים מתאימים</h2>
+  <table class="ltr-table">
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>Scale Formula (Intervals)</th>
+        <th>Characteristic Interval</th>
+        <th>Triad</th>
+        <th>7th Chord</th>
+        <th>Example Progression</th>
+        <th>Key Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Ionian</b></td>
+        <td>1 - 2 - 3 - 4 - 5 - 6 - 7</td>
+        <td>Natural 4, Major 7</td>
+        <td>Major</td>
+        <td>Maj7</td>
+        <td>I - IV - V</td>
+        <td>C - F - G</td>
+      </tr>
+      <tr>
+        <td><b>Dorian</b></td>
+        <td>1 - 2 - b3 - 4 - 5 - 6 - b7</td>
+        <td>Major 6 (Raised 6th)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - IV - bVII</td>
+        <td>Dm7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Phrygian</b></td>
+        <td>1 - b2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 2 (Flat 2nd)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - bII - bIII</td>
+        <td>Em7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td><b>Lydian</b></td>
+        <td>1 - 2 - 3 - #4 - 5 - 6 - 7</td>
+        <td>Augmented 4 (#4)</td>
+        <td>Major</td>
+        <td>Maj7</td>
+        <td>I - II - V</td>
+        <td>Fmaj7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Mixolydian</b></td>
+        <td>1 - 2 - 3 - 4 - 5 - 6 - b7</td>
+        <td>Minor 7 (Flat 7th)</td>
+        <td>Major</td>
+        <td>Dominant 7</td>
+        <td>I - bVII - IV</td>
+        <td>G7 - Fmaj7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Aeolian</b></td>
+        <td>1 - 2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 6 (Natural Minor)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - bVI - bVII</td>
+        <td>Am7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td><b>Locrian</b></td>
+        <td>1 - b2 - b3 - 4 - b5 - b6 - b7</td>
+        <td>Diminished 5 (b5)</td>
+        <td>Diminished</td>
+        <td>m7b5</td>
+        <td>i° - bII - biii</td>
+        <td>Bm7b5 - Cmaj7 - Dm7</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. מקרא והגיון לבניית אקורדים</h2>
+  <p>כל אקורד נבנה מדרגת הבסיס (<b>1</b>), הטרצה (<b>3</b>), החמישית (<b>5</b>), והשביעית (<b>7</b>).</p>
+  <ul>
+    <li><b>דרגה 3</b> קובעת את ה"משפחה": מאז'ור (3) או מינור (b3).</li>
+    <li><b>דרגות 5 ו-7</b> קובעות את ה"גיוון" והמתח של האקורד.</li>
+  </ul>
+
+  <h3>סוגי האקורדים המרכזיים:</h3>
+  <ul>
+    <li><b>Major (Maj / Maj7):</b> <code>1 - 3 - 5 - 7</code><br>צליל זך, יציב ומתוק. ללא הנמכות.</li>
+    <li><b>Minor (m / m7):</b> <code>1 - b3 - 5 - b7</code><br>צליל מינורי/עצוב. הטרצה והשביעית מונמכות בחצי טון.</li>
+    <li><b>Dominant 7 (7):</b> <code>1 - 3 - 5 - b7</code><br>בסיס מאז'ורי (3) עם שביעית מונמכת (b7). יוצר מתח שדורש פתרון (האקורד המרכזי ב-Mixolydian).</li>
+    <li><b>Half-Diminished (m7b5):</b> <code>1 - b3 - b5 - b7</code><br>אקורד m7 רגיל שבו רק הדרגה החמישית מונמכת (b5). נקרא חצי-מוקטן (האקורד המרכזי ב-Locrian).</li>
+    <li><b>Diminished (dim / °):</b> <code>1 - b3 - b5</code><br>אקורד מוקטן מלא (שלשה מינורית עם חמישית מונמכת).</li>
+  </ul>
+
+  <h2>3. טריקים לזיכרון ושינון מהיר</h2>
+  <ul>
+    <li><b>זיהוי מאז'ור vs מינור:</b> מופיעה 3 רגילה? ← אקורד מאז'ורי. מופיעה b3? ← אקורד מינורי או מוקטן.</li>
+    <li><b>זיהוי אקורד מוקטן:</b> דרגה 5 מופיעה בכל האקורדים הסטנדרטיים. דרגה b5 מופיעה <b>רק</b> באקורדים מוקטנים (Locrian / Diminished).</li>
+    <li><b>סולם ההנמכות של אקורדי 7 (מהפתוח למכווץ):</b>
+      <ol>
+        <li><b>Maj7:</b> 1 - 3 - 5 - 7</li>
+        <li><b>Dominant 7:</b> 1 - 3 - 5 - b7</li>
+        <li><b>m7:</b> 1 - b3 - 5 - b7</li>
+        <li><b>m7b5:</b> 1 - b3 - b5 - b7</li>
+      </ol>
+    </li>
+  </ul>
+</div>
+
+<!-- ENGLISH PAGE -->
+<div id="page-en" class="content-page ltr-content">
+  <h1>Guitar Modes & Chords Cheat Sheet</h1>
+  <p><strong>A practical guide for memorizing, understanding, and connecting modes, scale degrees, and chords.</strong></p>
+
+  <h2>1. Modes, Intervals & Corresponding Chords Table</h2>
+  <table class="ltr-table">
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>Scale Formula (Intervals)</th>
+        <th>Characteristic Interval</th>
+        <th>Triad</th>
+        <th>7th Chord</th>
+        <th>Example Progression</th>
+        <th>Key Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Ionian</b></td>
+        <td>1 - 2 - 3 - 4 - 5 - 6 - 7</td>
+        <td>Natural 4, Major 7</td>
+        <td>Major</td>
+        <td>Maj7</td>
+        <td>I - IV - V</td>
+        <td>C - F - G</td>
+      </tr>
+      <tr>
+        <td><b>Dorian</b></td>
+        <td>1 - 2 - b3 - 4 - 5 - 6 - b7</td>
+        <td>Major 6 (Raised 6th)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - IV - bVII</td>
+        <td>Dm7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Phrygian</b></td>
+        <td>1 - b2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 2 (Flat 2nd)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - bII - bIII</td>
+        <td>Em7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td><b>Lydian</b></td>
+        <td>1 - 2 - 3 - #4 - 5 - 6 - 7</td>
+        <td>Augmented 4 (#4)</td>
+        <td>Major</td>
+        <td>Maj7</td>
+        <td>I - II - V</td>
+        <td>Fmaj7 - G7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Mixolydian</b></td>
+        <td>1 - 2 - 3 - 4 - 5 - 6 - b7</td>
+        <td>Minor 7 (Flat 7th)</td>
+        <td>Major</td>
+        <td>Dominant 7</td>
+        <td>I - bVII - IV</td>
+        <td>G7 - Fmaj7 - Cmaj7</td>
+      </tr>
+      <tr>
+        <td><b>Aeolian</b></td>
+        <td>1 - 2 - b3 - 4 - 5 - b6 - b7</td>
+        <td>Minor 6 (Natural Minor)</td>
+        <td>Minor</td>
+        <td>m7</td>
+        <td>i - bVI - bVII</td>
+        <td>Am7 - Fmaj7 - G7</td>
+      </tr>
+      <tr>
+        <td><b>Locrian</b></td>
+        <td>1 - b2 - b3 - 4 - b5 - b6 - b7</td>
+        <td>Diminished 5 (b5)</td>
+        <td>Diminished</td>
+        <td>m7b5</td>
+        <td>i° - bII - biii</td>
+        <td>Bm7b5 - Cmaj7 - Dm7</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Chord Construction Logic & Legend</h2>
+  <p>Every chord is built from the Root (<b>1</b>), Third (<b>3</b>), Fifth (<b>5</b>), and Seventh (<b>7</b>).</p>
+  <ul>
+    <li><b>The 3rd degree</b> determines the chord "family": Major (3) or Minor (b3).</li>
+    <li><b>The 5th and 7th degrees</b> determine the tension and color of the chord.</li>
+  </ul>
+
+  <h3>Main Chord Types:</h3>
+  <ul>
+    <li><b>Major (Maj / Maj7):</b> <code>1 - 3 - 5 - 7</code><br>Pure, stable, and sweet sound. No flattened notes.</li>
+    <li><b>Minor (m / m7):</b> <code>1 - b3 - 5 - b7</code><br>Minor/sad sound. Both 3rd and 7th degrees are flattened by a half step.</li>
+    <li><b>Dominant 7 (7):</b> <code>1 - 3 - 5 - b7</code><br>Major base (3) with a flattened 7th (b7). Creates tension that seeks resolution (the main chord in Mixolydian).</li>
+    <li><b>Half-Diminished (m7b5):</b> <code>1 - b3 - b5 - b7</code><br>A regular m7 chord where only the 5th degree is flattened (b5). Essential for Locrian.</li>
+    <li><b>Diminished (dim / °):</b> <code>1 - b3 - b5</code><br>Full diminished triad (minor triad with a flattened 5th).</li>
+  </ul>
+
+  <h2>3. Quick Memorization Tips & Tricks</h2>
+  <ul>
+    <li><b>Major vs. Minor Identification:</b> Contains a natural 3? → <b>Major chord</b>. Contains b3? → <b>Minor or Diminished chord</b>.</li>
+    <li><b>Diminished Chord Identification:</b> A natural 5th appears in all standard chords. A <b>b5</b> appears <b>only</b> in diminished chords (Locrian / Diminished).</li>
+    <li><b>7th Chord Flattening Scale (From Open to Compressed):</b>
+      <ol>
+        <li><b>Maj7:</b> 1 - 3 - 5 - 7</li>
+        <li><b>Dominant 7:</b> 1 - 3 - 5 - b7</li>
+        <li><b>m7:</b> 1 - b3 - 5 - b7</li>
+        <li><b>m7b5:</b> 1 - b3 - b5 - b7</li>
+      </ol>
+    </li>
+  </ul>
+</div>
+
+<script>
+  function switchLanguage(lang) {
+    // Hide all pages
+    document.querySelectorAll('.content-page').forEach(page => {
+      page.classList.remove('active');
+    });
+    
+    // Deactivate all buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    // Show selected page & set active button
+    document.getElementById('page-' + lang).classList.add('active');
+    document.getElementById('btn-' + lang).classList.add('active');
+    
+    // Update HTML root dir attribute dynamically
+    document.documentElement.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+  }
+</script>
+
+</body>
+</html>
